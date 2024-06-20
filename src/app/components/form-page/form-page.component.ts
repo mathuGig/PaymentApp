@@ -4,7 +4,9 @@ import {
   OnInit,
   HostBinding,
   inject,
+  model,
 } from "@angular/core";
+
 import { CommonModule } from "@angular/common";
 
 import {
@@ -26,7 +28,16 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 
-import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogModule,
+  MatDialogRef,
+  MatDialogTitle,
+} from "@angular/material/dialog";
 import { MatSelectModule } from "@angular/material/select";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -50,6 +61,16 @@ import * as _moment from "moment";
 import { default as _rollupMoment, Moment } from "moment";
 
 const moment = _rollupMoment || _moment;
+
+export interface DialogData {
+  message: string;
+  responseCode: string;
+  invoiceNo: string;
+  product: string;
+  Date: string;
+  Amount: string;
+  Currency: string;
+}
 
 export const MY_FORMATS = {
   parse: {
@@ -199,7 +220,23 @@ export class FormPageComponent implements OnInit {
   selector: "dialog-content-success-dialog",
   templateUrl: "./dialog-content-success-dialog.html",
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogClose,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DialogContentSuccessDialog {}
+export class DialogContentSuccessDialog {
+  readonly dialogRef = inject(MatDialogRef<DialogContentSuccessDialog>);
+  readonly data = inject<DialogData>(MAT_DIALOG_DATA);
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
