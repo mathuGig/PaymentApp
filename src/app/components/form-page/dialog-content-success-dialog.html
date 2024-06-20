@@ -1,11 +1,13 @@
 <div class="container-fluid success-body">
   <div class="row justify-content-center">
     <div class="success-data">
-      <!-- <p>Product: {{ data.product }}</p>
+      <p>Product: {{ data.product }}</p>
       <p>Date:{{ data.Date }}</p>
-      <p>Amount:{{ data.Amount }} {{ cardData.Currency }}</p> -->
+      <p>Amount:{{ data.Amount }} {{ data.Currency }}</p>
     </div>
-    <div class="success-respon">Success</div>
-    <div class="success-invoice"><p>Invoice:</p></div>
+    @if (data.responseCode === "000") {
+    <p>Your payment has been successfully processed</p>
+    }
+    <div class="success-invoice"><p>Invoice: {{data.invoiceNo}}</p></div>
   </div>
 </div>

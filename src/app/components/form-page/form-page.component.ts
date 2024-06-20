@@ -158,13 +158,13 @@ export class FormPageComponent implements OnInit {
         console.log("subscribe=>", response);
         const dialogRef = this.dialog.open(DialogContentSuccessDialog, {
           data: {
-            message: response.message(),
-            responseCode: response.responseCode(),
-            invoiceNo: response.invoiceNo(),
-            product: this.cardData.product(),
-            Date: this.cardData.Date(),
-            Amount: this.cardData.Amount(),
-            Currency: this.cardData.Currency(),
+            message: response.message,
+            responseCode: response.responseCode,
+            invoiceNo: response.invoiceNo,
+            product: this.cardData.product,
+            Date: this.cardData.Date,
+            Amount: this.cardData.Amount,
+            Currency: this.cardData.Currency,
           },
         });
 
