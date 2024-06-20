@@ -135,8 +135,17 @@ export class FormPageComponent implements OnInit {
       .payment(this.cardInformationForm.value)
       .subscribe((response: any) => {
         console.log("subscribe=>", response);
-        this.gotoSuccess(response);
-        const dialogRef = this.dialog.open(DialogContentSuccessDialog);
+        const dialogRef = this.dialog.open(DialogContentSuccessDialog, {
+          data: {
+            message: response.message(),
+            responseCode: response.responseCode(),
+            invoiceNo: response.invoiceNo(),
+            product: this.cardData.product(),
+            Date: this.cardData.Date(),
+            Amount: this.cardData.Amount(),
+            Currency: this.cardData.Currency(),
+          },
+        });
 
         dialogRef.afterClosed().subscribe((result) => {
           console.log(`Dialog result: ${result}`);
@@ -171,15 +180,7 @@ export class FormPageComponent implements OnInit {
   toggleAnimations() {
     this.animationsDisabled = !this.animationsDisabled;
   }
-  gotoSuccess(response: any) {
-    console.log("gotoSuccess", response);
-    this.router.navigate(["/success"], {
-      state: {
-        description: "You are in needed in b",
-        Label: "B",
-      },
-    });
-  }
+
   readonly date = new FormControl(moment());
 
   setMonthAndYear(
@@ -195,8 +196,8 @@ export class FormPageComponent implements OnInit {
 }
 
 @Component({
-  selector: 'dialog-content-success-dialog',
-  templateUrl: './dialog-content-success-dialog.html',
+  selector: "dialog-content-success-dialog",
+  templateUrl: "./dialog-content-success-dialog.html",
   standalone: true,
   imports: [MatDialogModule, MatButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
