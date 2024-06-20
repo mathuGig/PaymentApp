@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.row {
+    gap: 25px;
+}
+
+.app-component-body {
+    padding: 50px;
+}
+
+mat-form-field {
+    width: 100%;
+    background-color: white;
+}
+
+button {
+    width: 100%;
+}
+
+.expiry {
+    width: 50%;
+}
