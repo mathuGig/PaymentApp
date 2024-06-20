@@ -25,3 +25,9 @@ button {
 .expiry {
     width: 50%;
 }
+
+.success-body{
+    padding: 30px;
+    background-color: white;
+    font-size: larger;
+}

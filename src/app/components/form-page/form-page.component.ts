@@ -219,6 +219,8 @@ export class FormPageComponent implements OnInit {
 @Component({
   selector: "dialog-content-success-dialog",
   templateUrl: "./dialog-content-success-dialog.html",
+  styleUrl: "./form-page.component.css",
+  
   standalone: true,
   imports: [
     MatFormFieldModule,
